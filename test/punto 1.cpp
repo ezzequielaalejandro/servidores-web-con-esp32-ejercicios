@@ -8,17 +8,17 @@ const char* password = "itisjtsmg";
 
 WebServer server(80);
 
-int leds [5] {5,6,7,8,9};
+int leds [5] = {13,12,14,27,26};
 
 volatile int animacion = 0;
 
-int anima1 [3] [5] {
+int anima1 [3] [5]= {
    {1,0,0,0,1},
    {0,1,1,1,0},
    {0,0,1,0,0}
   //1,2,3,4,5
 };
-int anima2 [3] [5] {
+int anima2 [3] [5]= {
    {0,1,0,1,0},
    {1,0,1,0,1},
    {1,1,0,1,0}
@@ -49,30 +49,32 @@ const char pagina_template[] PROGMEM = R"rawliteral(
 
 
 void animacion1(){
-    for(int i = 0; i <= 3; i ++){
-      for(int j = 0; j <= 5; j++){
-        digitalWrite(leds [j], anima1 [j] [i]);
+    for(int i = 0; i < 3; i ++){
+      for(int j = 0; j < 5; j++){
+        digitalWrite(leds [j], anima1 [i] [j]);
       }
+      delay(500);
     }
   }
 
 void animacion2(){
-    for(int i = 0; i <= 3; i ++){
-      for(int j = 0; j <= 5; j++){
-        digitalWrite(leds [j], anima2 [j] [i]);
+    for(int i = 0; i < 3; i ++){
+      for(int j = 0; j < 5; j++){
+        digitalWrite(leds [j], anima2 [i] [j]);
       }
+      delay(500);
     }
   }
 
 void apagado(){
-      for(int j = 0; j <= 5; j++){
+      for(int j = 0; j < 5; j++){
         digitalWrite(leds [j], LOW);
       }
     }
 
 void setup() {
   Serial.begin(115200);
-  for(int i; i <= 5; i++){
+  for(int i=0; i < 5; i++){
     pinMode(leds[i], OUTPUT);
   }
 
@@ -96,6 +98,11 @@ void setup() {
   Serial.println("\nWiFi conectado!");
   Serial.print("Dirección IP: http://");
   Serial.println(WiFi.localIP());
+
+  server.on("/", []() {
+    server.send(200, "text/html", pagina_template);
+  });
+
 
   server.on("/animacion1",[](){
     animacion=1;

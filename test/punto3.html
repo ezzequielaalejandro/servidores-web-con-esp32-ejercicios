@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>Servidor Web ESP32</title>
+  <style>
+    body { 
+        background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7WtTVBRAt5Me8izKHAhcjfimuCnh4_d6koYfmPplaQrqijJRHPuK2Ze7S&s=10); 
+        text-align: center; 
+        background-attachment: fixed;
+    }
+    .titulo { 
+        font-family: Impact; 
+        font-weight: bold;  
+        font-size: 45px; 
+        color: rgb(252, 0, 248);
+        text-decoration: underline; 
+    }
+    .lento { 
+        width: 200px; 
+        height: 200px; 
+        background-color: red; 
+        color: black; 
+        border: 3px solid black; 
+        border-radius: 100px; 
+        font-size: 23px; 
+        font-weight: bold; 
+        cursor: pointer; 
+    }
+    .normal { 
+        width: 200px; 
+        height: 200px; 
+        background-color: yellow; 
+        color: black; 
+        border: 3px solid black; 
+        border-radius: 100px; 
+        font-size: 23px; 
+        font-weight: bold; 
+        cursor: pointer; 
+    }
+    .rapido { 
+        width: 200px; 
+        height: 200px; 
+        background-color: green; 
+        color: black; 
+        border: 3px solid black; 
+        border-radius: 100px; 
+        font-size: 23px; 
+        font-weight: bold; 
+        cursor: pointer; 
+    }
+    .emergencia { 
+        width: 200px; 
+        height: 200px; 
+        background-color: orange; 
+        color: black; 
+        border: 3px solid black; 
+        border-radius: 100px; 
+        font-size: 23px; 
+        font-weight: bold; 
+        cursor: pointer; 
+    }
+    .span{
+        width: 200px; 
+        height: 200px; 
+        background-color: white; 
+        color: black; 
+        border: 3px solid black; 
+        border-radius: 100px; 
+        font-size: 23px; 
+        font-weight: bold; 
+        cursor: pointer; 
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1 class='titulo'>SEMAFORO</h1>
+  <p><a href='/lento'><button class='lento'>LENTO</button></a></p>
+  <p><a href='/normal'><button class='normal'>NORMAL</button></a></p>
+  <p><a href='/rapido'><button class='rapido'>RAPIDO</button></a></p>
+  <p><a href='/emergencia'><button class='emergencia'>EMERGENCIA</button></a></p>
+
+  <p><a class="span">Modo: __MODO_SEMAFORO__</a></p>
+</body>
+</html>

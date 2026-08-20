@@ -8,10 +8,10 @@ const char* password = "itisjtsmg";
 
 WebServer server(80);
 
-int display1 [7] {1,2,3,4,5,6,7};
-int display2 [7] {8,9,10,11,12,13,14};
+int display1 [7] = {13,12,14,27,26,25,33};
+int display2 [7] = {15,2,4,16,17,5,18};
 
-int animacion [10] [7] {
+int animacion [10] [7] = {
     {1,1,1,1,1,1,0}, //0
     {0,1,1,0,0,0,0}, //1
     {1,1,0,1,1,0,1}, //2
@@ -71,11 +71,11 @@ const char pagina_template[] PROGMEM = R"rawliteral(
 void setup() {
   Serial.begin(115200);
   
-  for(int i = 0; i <= 7; i++){
+  for(int i = 0; i < 7; i++){
     pinMode(display1[i], OUTPUT);
   }
   
-  for(int i = 0; i <= 7; i++){
+  for(int i = 0; i < 7; i++){
     pinMode(display2[i], OUTPUT);
   }
 
@@ -100,6 +100,9 @@ void setup() {
   Serial.print("Dirección IP: http://");
   Serial.println(WiFi.localIP());
 
+  server.on("/",[](){
+    server.send(200, "text/html", pagina_template);
+  });
   server.on("/7seg1",[](){
     display=1;
     server.sendHeader("Location", "/"); // dice que la página se vaya a /
@@ -180,17 +183,18 @@ void setup() {
 
 void loop() {
   server.handleClient();
+
      switch (display){
 
-    case '1':
-        for(int i = 0; i <= 7; i++){
+    case 1:
+        for(int i = 0; i < 7; i++){
             digitalWrite(display2 [i], LOW);
             digitalWrite(display1 [i], animacion [numero] [i]);
         }
         break;
 
-    case '2':
-        for(int i = 0; i <= 7; i++){
+    case 2:
+        for(int i = 0; i < 7; i++){
             digitalWrite(display1 [i], LOW);
             digitalWrite(display2 [i], animacion [numero] [i]);
         }
